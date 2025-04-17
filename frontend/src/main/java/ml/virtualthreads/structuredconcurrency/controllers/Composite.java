@@ -54,9 +54,9 @@ public class Composite {
             inspectTask("taskC", taskC);
 
         } catch (RuntimeException ex) {
-            LOG.error(STR."RuntimeException: \{ex}");
+            LOG.error("RuntimeException: " + ex);
         } catch (InterruptedException ex) {
-            LOG.error(STR."InterruptedException: \{ex}");
+            LOG.error("InterruptedException: " + ex);
             throw new RuntimeException(ex);
         }
     }
@@ -77,37 +77,41 @@ public class Composite {
             inspectTask("taskC", taskC);
 
         } catch (Throwable e) {
-            LOG.error(STR."Error: \{e}");
+            LOG.error("Error: " + e);
         }
     }
 
     private void inspectTask(String name, StructuredTaskScope.Subtask<String> st) {
-        LOG.info(STR."State for \{name}: \{st.state()}");
+        LOG.info("State for " + name + ": " + st.state());
         if (st.state() == StructuredTaskScope.Subtask.State.SUCCESS) {
-            LOG.info(STR."- Result: \{st.get()}");
+            LOG.info("- Result: " + st.get());
         }
         if (st.state() == StructuredTaskScope.Subtask.State.FAILED) {
-            LOG.info(STR."- Exception: \{st.exception()}");
+            LOG.info("- Exception: " + st.exception());
         }
     }
 
     @Retryable(maxAttempts = 2, backoff = @Backoff(delay = 1000))
     public String callRestService(String serviceName, int responseDelayMS) {
 
-        String url = STR."\{serviceName}/test?delay=\{responseDelayMS}";
+        // String url = STR."\{serviceName}/test?delay=\{responseDelayMS}";
+        String url = serviceName + "/test?delay=" + responseDelayMS;
 
-        LOG.info(STR."Calling: \{BASE_URL}/\{url}");
+        // LOG.info(STR."Calling: \{BASE_URL}/\{url}");
+        LOG.info("Calling: " + BASE_URL + "/" + url);
         ResponseEntity<String> response = restClient.get()
             .uri(url)
             .retrieve()
             .toEntity(String.class);
 
         if (response.getStatusCode().value() != 200) {
-            String message = STR."Error calling service: \{serviceName}, status code: \{response.getStatusCode().value()}";
+            // String message = STR."Error calling service: \{serviceName}, status code: \{response.getStatusCode().value()}";
+            String message = "Error calling service: " + serviceName + ", status code: " + response.getStatusCode().value();
             LOG.warn(message);
             throw new RuntimeException(message);
         } else {
-            LOG.info(STR."Got a response from service \{serviceName}: \{response.getBody()}");
+            // LOG.info(STR."Got a response from service \{serviceName}: \{response.getBody()}");
+            LOG.info("Got a response from service " + serviceName + ": " + response.getBody());
             return response.getBody();
         }
     }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClient;
 
-import static java.lang.StringTemplate.STR;
+// import static java.lang.StringTemplate.STR;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 import java.util.concurrent.ExecutionException;
@@ -65,7 +65,8 @@ public class HttpBinController {
     public String getWithRestClient(int id) {
 
         Article article = new Article(id, "ML TITLE");
-        System.out.println(STR."REQUEST body to httpbin: \{article.articleId} & \{article.title}");
+        // System.out.println(STR."REQUEST body to httpbin: \{article.articleId} & \{article.title}");
+        System.out.println("REQUEST body to httpbin: " + article.articleId + " & " + article.title);
 
         if (id < 0) {
             ResponseEntity<String> response = restClient.get()
@@ -96,7 +97,8 @@ public class HttpBinController {
 
         Article responseArticle = getArticle(dataText);
 
-        System.out.println(STR."RESPONSE from httpbin: \{response.getStatusCode()}: \{responseArticle.articleId} & \{responseArticle.title} } on thread class [\{Thread.currentThread().getClass().getName()}]");
+        // System.out.println(STR."RESPONSE from httpbin: \{response.getStatusCode()}: \{responseArticle.articleId} & \{responseArticle.title} } on thread class [\{Thread.currentThread().getClass().getName()}]");
+        System.out.println("RESPONSE from httpbin: " + response.getStatusCode() + " : " + responseArticle.articleId + " & " + responseArticle.title + " on thread class [" + Thread.currentThread().getClass().getName() + "]");
         return dataText;
     }
 

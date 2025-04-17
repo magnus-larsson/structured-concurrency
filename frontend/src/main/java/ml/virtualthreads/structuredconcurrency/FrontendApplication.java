@@ -6,9 +6,9 @@ import org.springframework.retry.annotation.EnableRetry;
 
 @EnableRetry
 @SpringBootApplication
-public class StructuredconcurrencyApplication {
+public class FrontendApplication {
 
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(StructuredconcurrencyApplication.class, args);
+		SpringApplication.run(FrontendApplication.class, args);
 	}
 }
