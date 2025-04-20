@@ -1,0 +1,12 @@
+services:
+
+  backend:
+    image: magnuslarsson/sc-backend
+    environment:
+      - JAVA_TOOL_OPTIONS=-Dserver.port=7001
+  frontend:
+    image: magnuslarsson/sc-frontend
+    ports:
+      - 8080:8080
+
+

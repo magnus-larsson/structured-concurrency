@@ -94,7 +94,6 @@ public class Composite {
     @Retryable(maxAttempts = 2, backoff = @Backoff(delay = 1000))
     public String callRestService(String serviceName, int responseDelayMS) {
 
-        // String url = STR."\{serviceName}/test?delay=\{responseDelayMS}";
         String url = serviceName + "/test?delay=" + responseDelayMS;
 
         // LOG.info(STR."Calling: \{BASE_URL}/\{url}");

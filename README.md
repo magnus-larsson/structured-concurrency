@@ -25,8 +25,6 @@ echo $env:JAVA_HOME
 java -version
 ```
 
-
-
 Compile:
 
 ```
@@ -63,10 +61,14 @@ Test httpbin:
 curl http://localhost:8080/httpbin/test
 ```
 
-# Java post-v8 syntax
-
-JEP 459: String Templates (Second Preview)
+# Containers
 
 ```
-System.out.println(STR."REQUEST body to httpbin: \{article.articleId} & \{article.title}");
+cd backend
+./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=sc-backend
+
+cd ..
+
+cd frontend
+./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=sc-frontend
 ```
