@@ -81,6 +81,27 @@ public class Composite {
         }
     }
 
+    // TODO: How to verify that response time is 2 sec but total excecution time is 6 sec?
+    // curl http://localhost:8080/composite/slow
+    @GetMapping("/slow")
+    void runSlow() {
+        LOG.info("Calling services A, B and C with slow response...");
+        try (var scope = new StructuredTaskScope<Object>()) {
+            var taskA = scope.fork(() -> callRestService("a", 2000));
+            var taskB = scope.fork(() -> callRestService("b", 2000));
+            var taskC = scope.fork(() -> callRestService("c", 2000));
+            scope.join();
+            LOG.info("Done calling services A, B and C with failures...");
+
+            inspectTask("taskA", taskA);
+            inspectTask("taskB", taskB);
+            inspectTask("taskC", taskC);
+
+        } catch (Throwable e) {
+            LOG.error("Error: " + e);
+        }
+    }
+
     private void inspectTask(String name, StructuredTaskScope.Subtask<String> st) {
         LOG.info("State for " + name + ": " + st.state());
         if (st.state() == StructuredTaskScope.Subtask.State.SUCCESS) {
