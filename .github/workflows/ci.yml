@@ -67,4 +67,5 @@ jobs:
 
       # Run end-to-end tests
       - name: Run E2E tests
+        working-directory: e2e-tests
         run: ./mvnw test -f e2e-tests/pom.xml
