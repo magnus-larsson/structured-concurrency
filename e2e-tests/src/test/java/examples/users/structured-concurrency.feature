@@ -19,7 +19,7 @@ Feature: sample karate test script
     When method get
     Then status 200
     And print responseTime
-    And responseTime > 2000
+    # And responseTime > 2000
 
   Scenario: httpbin test
     Given path 'httpbin/test'

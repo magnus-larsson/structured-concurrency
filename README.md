@@ -34,13 +34,13 @@ Compile:
 Run backend services:
 
 ```
-java --enable-preview -D"server.port=7070" -jar target/structuredconcurrency-backend-0.0.1-SNAPSHOT.jar
+java --enable-preview -D"server.port=7070" -jar backend/build/libs/backend-0.0.1-SNAPSHOT.jar  
 ```
 
 Run frontend services:
 
 ```
-java --enable-preview -jar target/structuredconcurrency-0.0.1-SNAPSHOT.jar
+java --enable-preview -jar frontend/build/libs/frontend-0.0.1-SNAPSHOT.jar  
 ```
 
 OK Test:
@@ -59,6 +59,13 @@ Test httpbin:
 
 ```
 curl http://localhost:8080/httpbin/test
+```
+
+E2E tests:
+
+```
+cd e2e-tests
+.\mvnw.cmd test
 ```
 
 # Containers
