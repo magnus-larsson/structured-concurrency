@@ -72,4 +72,4 @@ jobs:
 
       # Log services with Docker Compose
       - name: Log services
-        run: docker compose log
+        run: docker compose logs
