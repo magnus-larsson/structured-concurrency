@@ -68,4 +68,4 @@ jobs:
       # Run end-to-end tests
       - name: Run E2E tests
         working-directory: e2e-tests
-        run: ./mvnw test
+        run: ./gradlew test --tests structuredconcurrency.SCRunner

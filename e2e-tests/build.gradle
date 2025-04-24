@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+}
+
+group = 'io.karatelabs'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(24)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    karateVersion = '1.5.1'
+}
+
+dependencies {
+    testImplementation "io.karatelabs:karate-junit5:$karateVersion"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty 'file.encoding', 'UTF-8'
+
+    // Exclude *.java files from test resources
+    testClassesDirs = files(sourceSets.test.output.classesDirs)
+    classpath = sourceSets.test.runtimeClasspath
+}
+
+// Optional: configure test resources to exclude *.java files
+sourceSets {
+    test {
+        resources {
+            srcDir 'src/test/java'
+            exclude '**/*.java'
+        }
+    }
+}

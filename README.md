@@ -28,7 +28,7 @@ java -version
 Compile:
 
 ```
-./mvnw package 
+./gradlew build 
 ```
 
 Run backend services:
@@ -64,8 +64,14 @@ curl http://localhost:8080/httpbin/test
 E2E tests:
 
 ```
+./gradlew bootBuildImage && docker compose up -d && docker compose logs -f --tail=0 
+
 cd e2e-tests
-.\mvnw.cmd test
+./gradlew clean test --tests structuredconcurrency.SCRunner
+open build/karate-reports/karate-summary.html
+cd ..
+
+docker compose down
 ```
 
 # Containers

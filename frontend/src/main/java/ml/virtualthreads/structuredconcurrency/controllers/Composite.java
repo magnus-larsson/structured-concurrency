@@ -21,7 +21,8 @@ public class Composite {
 
     private static final Logger LOG = LoggerFactory.getLogger(Composite.class);
     private final RestClient restClient;
-    private final String BASE_URL = "http://localhost:7070";
+    // private final String BASE_URL = "http://localhost:7070";
+    private final String BASE_URL = "http://backend:7070";
 
     public Composite(RestClient.Builder restClientBuilder) {
         restClient = restClientBuilder
@@ -34,7 +35,7 @@ public class Composite {
         LOG.info("Configuring a SimpleClientHttpRequestFactory...");
         SimpleClientHttpRequestFactory simpleClientHttpRequestFactory = new SimpleClientHttpRequestFactory();
         simpleClientHttpRequestFactory.setConnectTimeout(Duration.ofMillis(500));
-        simpleClientHttpRequestFactory.setReadTimeout(Duration.ofMillis(1000));
+        simpleClientHttpRequestFactory.setReadTimeout(Duration.ofMillis(3000));
         return simpleClientHttpRequestFactory;
     }
 
@@ -112,7 +113,7 @@ public class Composite {
         }
     }
 
-    @Retryable(maxAttempts = 2, backoff = @Backoff(delay = 1000))
+    // @Retryable(maxAttempts = 2, backoff = @Backoff(delay = 1000))
     public String callRestService(String serviceName, int responseDelayMS) {
 
         String url = serviceName + "/test?delay=" + responseDelayMS;
