@@ -69,3 +69,7 @@ jobs:
       - name: Run E2E tests
         working-directory: e2e-tests
         run: ./gradlew test --tests structuredconcurrency.SCRunner
+
+      # Log services with Docker Compose
+      - name: Log services
+        run: docker compose log
