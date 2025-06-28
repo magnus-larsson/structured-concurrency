@@ -86,7 +86,7 @@ public class Composite {
     // curl http://localhost:8080/composite/slow
     @GetMapping("/slow")
     void runSlow() {
-        LOG.info("Calling services A, B and C with slow response...");
+        LOG.info("Calling services A, B and C with slow response (2000 ms)...");
         try (var scope = new StructuredTaskScope<Object>()) {
             var taskA = scope.fork(() -> callRestService("a", 2000));
             var taskB = scope.fork(() -> callRestService("b", 2000));
