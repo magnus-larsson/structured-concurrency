@@ -11,8 +11,6 @@ on:
 jobs:
   call-pwd-test-job:
     uses: ./.github/workflows/ml2.yml
-    with:
-      config-path: '.github/workflows/ci.yml'
   call-build-test-job:
     uses: ./.github/workflows/ml1.yml
     with:
