@@ -6,7 +6,6 @@ on:
       config-path:
         required: false
         type: string
-        value: '.github/workflows/ci.yml'
 
 jobs:
   build:
