@@ -1,4 +1,4 @@
-name: Reusable workflow ML§
+name: Reusable workflow ML1
 
 on:
   workflow_call:

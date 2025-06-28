@@ -1,0 +1,16 @@
+name: Reusable workflow ML2
+
+on:
+  workflow_call:
+    inputs:
+      config-path:
+        required: false
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test with pwd
+        run: pwd
